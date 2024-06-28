@@ -259,7 +259,7 @@ func TestToPromMetric(t *testing.T) {
 			underTest.ToProm(&buf)
 
 			var family dto.MetricFamily
-			err := expfmt.NewDecoder(&buf, expfmt.FmtText).Decode(&family)
+			err := expfmt.NewDecoder(&buf, expfmt.NewFormat(expfmt.TypeTextPlain)).Decode(&family)
 			assert.NoError(t, err)
 			assert.Equal(t, tc.Expected, family)
 
@@ -411,7 +411,7 @@ func TestToPromFamily(t *testing.T) {
 	var actualOutput bytes.Buffer
 	underTest := metric.Points(inpt)
 	underTest.ToProm(&actualOutput)
-	decoder := expfmt.NewDecoder(&actualOutput, expfmt.FmtText)
+	decoder := expfmt.NewDecoder(&actualOutput, expfmt.NewFormat(expfmt.TypeTextPlain))
 
 	actualFamilies := make(map[string]*dto.MetricFamily)
 	for {

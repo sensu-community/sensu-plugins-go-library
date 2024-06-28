@@ -138,7 +138,7 @@ func (m Points) ToProm(writer io.Writer) error {
 		family.Metric = append(family.Metric, metric)
 	}
 
-	enc := expfmt.NewEncoder(writer, expfmt.FmtText)
+	enc := expfmt.NewEncoder(writer, expfmt.NewFormat(expfmt.TypeTextPlain))
 	for _, family := range metricFamilies {
 		err := enc.Encode(family)
 		if err != nil {

@@ -7,6 +7,10 @@ Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Changes
+- Library version bumps
+- Require Go 1.22.x
+
 ## [0.18.0] - 2023-02-27
 
 ### Added
